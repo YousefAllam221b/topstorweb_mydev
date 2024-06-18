@@ -61,6 +61,7 @@ function poolsrefresh(first = 0) {
 			url: "/api/v1/volumes/poolsinfo",
 			dataType: "json",
 			timeout: 3000,
+			data: { 'token': hypetoken },
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
 			async: false,
@@ -81,6 +82,7 @@ function usersnohomerefresh(first = 0) {
 		url: "/api/v1/users/userlist",
 		dataType: "json",
 		timeout: 3000,
+		data: { 'token': hypetoken },
 		// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 		type: "GET",
 		async: false,
@@ -107,6 +109,7 @@ function groupsrefresh(first = 0) {
 			url: "api/v1/volumes/grouplist",
 			dataType: "json",
 			timeout: 3000,
+			data: { 'token': hypetoken },
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
 			async: false,
@@ -213,6 +216,7 @@ $("#createvol").click(function (e) {
 			type: prot,
 			pool: thepool,
 			name: thevol,
+			token: hypetoken,
 			ipaddress: $("#Address").val(),
 			domtype: "workgroup",
 			active: active,
@@ -232,6 +236,7 @@ $("#createvol").click(function (e) {
 			type: protype,
 			pool: thepool,
 			name: thevol,
+			token: hypetoken,
 			ipaddress: $("#Address").val(),
 			domtype: "domain",
 			active: active,
@@ -312,6 +317,7 @@ volumelisttable = $("#VolumeList").DataTable({
 		order: [[1, "desc"]],
 		ajax: {
 			url: "api/v1/volumes/" + prot + "/volumesinfo",
+			data: {'token': hypetoken },
 			timeout: 3000,
 			async: false,
 			type: "GET",
@@ -532,6 +538,7 @@ function selbtnclickeduser(ths) {
 	var apiurl = "api/v1/volumes/config";
 	nam = $(ths).data("name");
 	var apidata = JSON.parse(JSON.stringify(changedprop[nam]));
+	apidata["token"] = hypetoken;
 	apidata["volume"] = nam;
 	if ("groups" in apidata) {
 		var newgrps = "";
@@ -560,13 +567,13 @@ function activethis(volname, statusmount, runtime) {
 	if (statusmount.includes("active") > 0 && runtime == 'serviceok') {
 		active = "disabled";
 	}
-	var apidata = { name: volname, active: active, user: "mezo" };
+	var apidata = { name: volname, active: active, user: "mezo" , 'token':hypetoken};
 	postdata(apiurl, apidata);
 }
 
 function avoldel(volname) {
 	var apiurl = "api/v1/volumes/volumedel";
-	var apidata = { name: volname, type: prot, user: "mezo" };
+	var apidata = { name: volname, type: prot, user: "mezo", 'token':hypetoken };
 	console.log(volname, prot);
 	postdata(apiurl, apidata);
 }
@@ -687,6 +694,7 @@ function groupsfn(first = 0) {
 	var newallgroups = "new0";
 	$.ajax({
 		url: "api/v1/volumes/grouplist",
+		data: {'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: false,
@@ -726,6 +734,7 @@ function refreshall(first = 0) {
 	$(".odd").css("background-color", "rgba(41,57,198,.1)");
 	$.ajax({
 		url: "api/v1/volumes/poolsinfo",
+		data: { 'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: true,
@@ -746,6 +755,7 @@ function refreshall(first = 0) {
 	var newallvolumes = "new0";
 	$.ajax({
 		url: "api/v1/volumes/" + prot + "/volumesinfo",
+		data: { 'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: true,
@@ -767,6 +777,7 @@ function refreshall(first = 0) {
 	$.ajax({
 		url: "api/v1/volumes/stats",
 		type: "GET",
+		data: { 'token': hypetoken },
 		//timeout: 3000,
 		async: true,
 		//beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://10.11.11.241:8080');},

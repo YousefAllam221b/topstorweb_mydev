@@ -25,6 +25,7 @@ function getdgs() {
 		//timeout: 3000,
 		async: true,
 		type: "GET",
+		data: {'token': hypetoken },
 		success: function (data) {
 			dgrefresh(data);
 			if (firstRequests == 1) firstRequests = 0;

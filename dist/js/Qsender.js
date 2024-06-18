@@ -65,6 +65,7 @@ function poolsrefresh() {
 		ajax: {
 			url: "/api/v1/volumes/poolsinfo",
 			dataType: "json",
+			data: { 'token': hypetoken },
 			timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
@@ -86,6 +87,7 @@ function volumesrefresh() {
 		$.ajax({
 			url: "/api/v1/volumes/volumelist",
 			dataType: "json",
+			data: { 'token': hypetoken },
 			timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
@@ -124,6 +126,7 @@ function partnersrefresh() {
 		$.ajax({
 			url: "/api/v1/partners/partnerlist",
 			dataType: "json",
+			data: { 'token': hypetoken },
 			timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
@@ -156,6 +159,7 @@ function getsnaps() {
 	$.ajax({
 		url: "api/v1/volumes/snapshots/snapshotsinfo",
 		//timeout: 3000,
+		data: { 'token': hypetoken },
 		async: true,
 		type: "GET",
 		success: function (data) {
@@ -630,13 +634,13 @@ function rollback(csnap) {
 
 function asnapdel(csnap) {
 	var apiurl = "api/v1/volumes/snapshots/snapshotdel";
-	var apidata = { name: csnap, user: "mezo" };
+	var apidata = { name: csnap, user: "mezo" , 'token': hypetoken};
 	postdata(apiurl, apidata);
 }
 
 function aperioddel(cperiod) {
 	var apiurl = "api/v1/volumes/snapshots/perioddelete";
-	var apidata = { name: cperiod, user: "mezo" };
+	var apidata = { name: cperiod, user: "mezo", 'token': hypetoken};
 	postdata(apiurl, apidata);
 }
 
@@ -650,6 +654,7 @@ $("#oncecreate").click(function (e) {
 	var apiurl = "api/v1/volumes/snapshots/create";
 	var apidata = {
 		snapsel: "Once",
+		data: { 'token': hypetoken },
 		pool: thepool,
 		volume: thevol,
 		name: thesnap,
@@ -672,6 +677,7 @@ $("#Minutelycreate").click(function (e) {
 	var apidata = {
 		snapsel: "Minutely",
 		pool: thepool,
+		data: { 'token': hypetoken },
 		volume: thevol,
 		every: every,
 		receiver: receiver,
@@ -694,6 +700,7 @@ $("#Hourlycreate").click(function (e) {
 	var apidata = {
 		snapsel: "Hourly",
 		pool: thepool,
+		data: { 'token': hypetoken },
 		volume: thevol,
 		every: every,
 		receiver: receiver,
@@ -718,6 +725,7 @@ $("#Weeklycreate").click(function (e) {
 	var apiurl = "api/v1/volumes/snapshots/create";
 	var apidata = {
 		snapsel: "Weekly",
+		data: { 'token': hypetoken },
 		pool: thepool,
 		volume: thevol,
 		every: every,

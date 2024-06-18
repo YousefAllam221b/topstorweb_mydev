@@ -66,6 +66,7 @@ function poolsrefresh() {
 		placeholder: "Select a pool",
 		ajax: {
 			url: "/api/v1/volumes/poolsinfo",
+			data: { 'token': hypetoken },
 			dataType: "json",
 			timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
@@ -87,6 +88,7 @@ function volumesrefresh() {
 	} else {
 		$.ajax({
 			url: "/api/v1/volumes/volumelist",
+			data: { 'token': hypetoken },
 			dataType: "json",
 			timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
@@ -119,6 +121,7 @@ function volumesrefresh() {
 function getsnaps() {
 	$.ajax({
 		url: "api/v1/volumes/snapshots/snapshotsinfo",
+		data: { 'token': hypetoken },
 		//timeout: 3000,
 		async: true,
 		type: "GET",
@@ -545,19 +548,19 @@ firstRequestsInterval = setInterval(() => {
 
 function rollback(csnap) {
 	var apiurl = "api/v1/volumes/snapshots/snaprollback";
-	var apidata = { name: csnap, user: "mezo" };
+	var apidata = { name: csnap, user: "mezo", 'token': hypetoken };
 	postdata(apiurl, apidata);
 }
 
 function asnapdel(csnap) {
 	var apiurl = "api/v1/volumes/snapshots/snapshotdel";
-	var apidata = { name: csnap, user: "mezo" };
+	var apidata = { name: csnap, user: "mezo", 'token': hypetoken };
 	postdata(apiurl, apidata);
 }
 
 function aperioddel(cperiod) {
 	var apiurl = "api/v1/volumes/snapshots/perioddelete";
-	var apidata = { name: cperiod, user: "mezo" };
+	var apidata = { name: cperiod, user: "mezo", 'token': hypetoken };
 	postdata(apiurl, apidata);
 }
 
@@ -569,7 +572,7 @@ $("#oncecreate").click(function (e) {
 	var thesnap = $("#Oncename").val();
 
 	var apiurl = "api/v1/volumes/snapshots/create";
-	var apidata = { snapsel: "Once", pool: thepool, volume: thevol, name: thesnap, owner: owner };
+	var apidata = { snapsel: "Once", pool: thepool, volume: thevol, name: thesnap, owner: owner, 'token': hypetoken };
 
 	postdata(apiurl, apidata);
 });
@@ -584,6 +587,7 @@ $("#Minutelycreate").click(function (e) {
 	var apiurl = "api/v1/volumes/snapshots/create";
 	var apidata = {
 		snapsel: "Minutely",
+		data: { 'token': hypetoken}, 
 		pool: thepool,
 		volume: thevol,
 		every: every,
@@ -604,6 +608,7 @@ $("#Hourlycreate").click(function (e) {
 	var apiurl = "api/v1/volumes/snapshots/create";
 	var apidata = {
 		snapsel: "Hourly",
+		data: { 'token': hypetoken}, 
 		pool: thepool,
 		volume: thevol,
 		every: every,
@@ -627,6 +632,7 @@ $("#Weeklycreate").click(function (e) {
 	var apiurl = "api/v1/volumes/snapshots/create";
 	var apidata = {
 		snapsel: "Weekly",
+		data: { 'token': hypetoken}, 
 		pool: thepool,
 		volume: thevol,
 		every: every,

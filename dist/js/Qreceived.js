@@ -12,6 +12,7 @@ function poolsrefresh() {
 	$.ajax({
 		url: "/api/v1/volumes/poolsinfo",
 		dataType: "json",
+		data: { 'token': hypetoken },
 		// timeout: 3000,
 		// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 		type: "GET",
@@ -60,6 +61,7 @@ function volumesrefresh() {
 		$.ajax({
 			url: "/api/v1/volumes/volumelist",
 			dataType: "json",
+			data: { 'token': hypetoken },
 			// timeout: 3000,
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
@@ -170,6 +172,7 @@ function partnersrefresh() {
 	$.ajax({
 		url: "/api/v1/partners/partnerlist",
 		dataType: "json",
+		data: { 'token': hypetoken },
 		// timeout: 3000,
 		// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 		type: "GET",
@@ -209,6 +212,7 @@ function getsnaps() {
 	$.ajax({
 		url: "api/v1/volumes/snapshots/snapshotsinfo",
 		//timeout: 3000,
+		data: { 'token': hypetoken },
 		async: true,
 		type: "GET",
 		success: function (data) {
@@ -380,6 +384,7 @@ function initalltables() {
 	$.ajax({
 		url: "api/v1/volumes/snapshots/snapshotsinfo",
 		//timeout: 3000,
+		data: { 'token': hypetoken },
 		async: false,
 		type: "GET",
 		success: function (data) {
