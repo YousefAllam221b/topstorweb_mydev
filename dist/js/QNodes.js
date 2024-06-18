@@ -11,8 +11,11 @@ var hostsinfo = "init";
 var firstRequests = 1;
 $("#BoxName").inputmask("Regex", { regex: "(.*[a-z]){3}", clearIncomplete: true });
 function refreshhosts() {
+	var hypetoken = localStorage.getItem("token");
+	var apidata = {"token": hypetoken};
 	$.ajax({
 		url: "api/v1/hosts/allinfo",
+                data: apidata,error: function(req, err){ console.log('my message' + err); },
 		async: true,
 		type: "GET",
 		success: function (data) {
