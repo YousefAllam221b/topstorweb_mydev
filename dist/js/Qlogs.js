@@ -60,6 +60,7 @@ function initlogs() {
 		ajax: {
 			url: "api/v1/info/logs",
 			async: false,
+			data: { 'token': hypetoken },
 			type: "GET",
 			dataSrc: "alllogs",
 		},

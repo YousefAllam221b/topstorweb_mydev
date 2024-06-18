@@ -55,6 +55,7 @@ function poolsrefresh() {
 		placeholder: "Select a state",
 		ajax: {
 			url: "/api/v1/volumes/poolsinfo",
+			data: { 'token': hypetoken },
 			dataType: "json",
 			async: true,
 			//timeout: 3000,
@@ -86,6 +87,7 @@ $("#createvol").click(function (e) {
 	var apiurl = "api/v1/volumes/create";
 	var apidata = {
 		type: prot,
+		token: hypetoken,
 		pool: thepool,
 		name: thevol,
 		active: active,
@@ -163,6 +165,7 @@ function initVolumelist() {
 		order: [[1, "desc"]],
 		ajax: {
 			url: "api/v1/volumes/" + prot + "/volumesinfo",
+			data: { 'token': hypetoken },
 			timeout: 3000,
 			async: false,
 			type: "GET",
@@ -321,6 +324,7 @@ function selbtnclickeduser(ths) {
 	var apidata = JSON.parse(JSON.stringify(changedprop[nam]));
 	apidata["volume"] = nam;
 	apidata["type"] = prot;
+	apidata['token'] = hypetoken;
 	apidata["initiators"] = apidata["initiators"]
 		.replaceAll("\n", ",")
 		.replaceAll("\r", "")
@@ -332,7 +336,7 @@ function selbtnclickeduser(ths) {
 
 function avoldel(volname) {
 	var apiurl = "api/v1/volumes/volumedel";
-	var apidata = { name: volname, type: prot, user: "mezo" };
+	var apidata = { name: volname, type: prot, user: "mezo", "token": hypetoken };
 	postdata(apiurl, apidata);
 }
 
@@ -447,6 +451,7 @@ function refreshpools(first) {
 	var newallpools = "new0";
 	$.ajax({
 		url: "api/v1/volumes/poolsinfo",
+		data: { 'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: false,
@@ -467,6 +472,7 @@ function refreshvolumes(first) {
 	var newallvolumes = "new0";
 	$.ajax({
 		url: "api/v1/volumes/" + prot + "/volumesinfo",
+		data: { 'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: false,
@@ -486,6 +492,7 @@ function refreshvolumes(first) {
 	var newstats = "new0";
 	$.ajax({
 		url: "api/v1/volumes/stats",
+		data: { 'token': hypetoken },
 		type: "GET",
 		//timeout: 3000,
 		async: true,
