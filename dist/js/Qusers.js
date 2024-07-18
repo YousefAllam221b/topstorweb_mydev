@@ -261,6 +261,7 @@ let ExcelToJSONParser = function() {
 			let usersList;
 			$.ajax({
 				url: "api/v1/users/grouplist",
+				data: { 'token': hypetoken },
 				dataType: "json",
 				type: "GET",
 				async: false,
@@ -279,6 +280,7 @@ let ExcelToJSONParser = function() {
 			})
 			$.ajax({
 				url: "api/v1/users/userlist",
+				data: { 'token': hypetoken },
 				async: false,
 				type: "GET",
 				dataSrc: "allusers",
@@ -361,6 +363,7 @@ function groupsrefresh() {
 	$(".select2.multiple").select2({
 		ajax: {
 			url: "api/v1/users/grouplist",
+			data: { 'token': hypetoken },
 			dataType: "json",
 			// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 			type: "GET",
@@ -373,6 +376,7 @@ function poolsrefresh() {
 		.select2({
 			ajax: {
 				url: "api/v1/pools/poolsinfo",
+				data: { 'token': hypetoken },
 				dataType: "json",
 				// Additional AJAX parameters go here; see the end of this chapter for the full code of this example
 				type: "GET",
@@ -447,6 +451,7 @@ function initUserlist() {
 		//"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 		ajax: {
 			url: "api/v1/users/userlist",
+			data: { 'token': hypetoken },
 			async: false,
 			type: "GET",
 			dataSrc: "allusers",
@@ -539,6 +544,7 @@ function selbtnclickeduser(ths) {
 		groups: $("#sel" + nam)
 			.val()
 			.toString(),
+		token: hypetoken,
 	};
 	postdata(apiurl, apidata);
 }
@@ -556,6 +562,7 @@ $("#UnixAddUser").click(function (e) {
 		Volsize: $("#volsize").val(),
 		HomeAddress: ipaddr,
 		HomeSubnet: $("#HomeSubnet").val(),
+		token: hypetoken,
 		Myname: "mezo",
 	};
 	postdata(apiurl, apidata);
@@ -565,7 +572,7 @@ $("#UnixAddUser").click(function (e) {
 
 function auserdel() {
 	var apiurl = "api/v1/users/userdel";
-	var apidata = { name: arguments[0], Myname: "mezo" };
+	var apidata = { name: arguments[0], token:hypetoken, Myname: "mezo" };
 	postdata(apiurl, apidata);
 }
 
@@ -576,6 +583,7 @@ function refreshall() {
 	$.ajax({
 		url: "api/v1/users/grouplist",
 		type: "GET",
+		data: { 'token': hypetoken },
 		async: true,
 		//beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://10.11.11.241:8080');},
 
@@ -592,6 +600,7 @@ function refreshall() {
 	var newallpools = "new0";
 	$.ajax({
 		url: "api/v1/pools/poolsinfo",
+		data: { 'token': hypetoken },
 		type: "GET",
 		async: true,
 		//beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://10.11.11.241:8080');},
@@ -609,6 +618,7 @@ function refreshall() {
 	var newallusers = "new0";
 	$.ajax({
 		url: "api/v1/users/userlist",
+		data: { 'token': hypetoken },
 		async: true,
 		type: "GET",
 		dataSrc: "allusers",
