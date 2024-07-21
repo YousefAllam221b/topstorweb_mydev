@@ -210,9 +210,10 @@ $("#possiblesubmit").click(function (e) {
 	postdata(apiurl, apidata);
 });
 
-$("#refresh").click(function (e) {
+$(".refresh").click(function (e) {
 	var apiurl = "api/v1/hosts/discover";
-	var apidata = { name: ''};
+	var apidata = { name: 'nothing', token: hypetoken};
+	console.log('token',hypetoken)
 	postdata(apiurl, apidata);
 });
 
