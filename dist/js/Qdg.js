@@ -287,6 +287,7 @@ function initdgs() {
 						event.stopPropagation();
 						var apidata = alldgs["disks"][disk];
 						apidata['action'] = 'offline';
+						apidata['token'] = hypetoken; 
 						postdata(apiurl, apidata);
     						$('#' + disk).popover('hide');
 					});
@@ -300,6 +301,7 @@ function initdgs() {
 						event.stopPropagation();
 						var apidata = alldgs["disks"][disk];
 						apidata['action'] = 'online';
+						apidata['token'] = hypetoken; 
 						postdata(apiurl, apidata);
     						$('#' + disk).popover('hide');
 					});
@@ -479,7 +481,7 @@ $(".updatepool").click(function (e) {
 });
 function adelpool(pool) {
 	var apiurl = "api/v1/pools/delpool";
-	var apidata = { pool: pool, user: "mezo" };
+	var apidata = { pool: pool, user: "mezo" , 'token': hypetoken };
 	postdata(apiurl, apidata);
 }
 
@@ -488,7 +490,7 @@ $("#createpool").click(function (e) {
 	var apiurl = "api/v1/pools/newpool";
 	var redundancy = $(this).data("redundancy");
 	var useable = $("#select" + redundancy).val();
-	var apidata = { redundancy: $(this).data("redundancy"), useable: useable, user: "mezo" };
+	var apidata = { redundancy: $(this).data("redundancy"), useable: useable, 'token': hypetoken, user: "mezo" };
 	postdata(apiurl, apidata);
 });
 //$('.addtopool').click(function(e){
@@ -498,7 +500,7 @@ $("body").on("click", ".addtopool", function (e) {
 	var redundancy = $(this).data("redundancy");
 	var pool = $(this).data("pool");
 	var useable = $("#" + pool + " .select" + redundancy).val();
-	var apidata = { pool: pool, redundancy: redundancy, useable: useable, user: "mezo" };
+	var apidata = { pool: pool, redundancy: redundancy, useable: useable, 'token': hypetoken, user: "mezo" };
 	console.log("addtopol", apidata);
 	postdata(apiurl, apidata);
 });
