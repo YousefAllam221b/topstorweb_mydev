@@ -104,7 +104,8 @@ function initaddgs() {
 				}
 				if (
 					alldgs["pools"][pool]["name"] != "pree" &&
-					alldgs["pools"][pool]["availtype"].includes("Availability")
+					alldgs["pools"][pool]['raids'].toString().includes("raidz") || 
+					alldgs["pools"][pool]['raids'].toString().includes("mirror")
 				) {
 					$("#" + pool + " .adiv" + en).show();
 					$("#" + pool + " .adivvolset").hide();
@@ -152,7 +153,7 @@ function initdgs() {
 			$("#" + pool + " .spanused").text("used:" + t["used"].toString().slice(0, 5) + "GB");
 			var avtype = "Highly Available";
 			var avcolor = "blue";
-			if (t["name"] != "pree" && t["availtype"] != "Availability") {
+			if (t["name"] != "pree" && t['raids'].toString().includes('strip')) {
 				avtype = "No Redundancy";
 				avcolor = "red";
 			} else {
