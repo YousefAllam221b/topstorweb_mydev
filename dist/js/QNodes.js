@@ -200,7 +200,7 @@ function evacuate() {
 	var host = selectedhost["active"];
 	var apiurl = "api/v1/hosts/evacuate";
 	var apidata = { name: allhosts["active"][host]["name"] };
-	apidata['token'] = hyptetoken;
+	apidata['token'] = hypetoken;
 	postdata(apiurl, apidata);
 }
 
